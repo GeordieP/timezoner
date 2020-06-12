@@ -1,4 +1,5 @@
-import { Spacetime } from "spacetime";
+import { Spacetime, TimezoneMeta } from "spacetime";
+import informal from "spacetime-informal";
 
 export function formatTimeString(st: Spacetime, clock: ClockHours = 12) {
   const hour = formatHour(st.hour(), clock);
@@ -10,6 +11,16 @@ function formatHour(hour: number, clock: ClockHours) {
   if (clock === 24) return hour;
   if (hour > 12) return hour - 12;
   return hour;
+}
+
+export const formatTimezoneName = (name: string) => name.replace(/_/g, " ");
+
+export function formatTimezoneCode(tz: TimezoneMeta) {
+  if (!tz.hasDst || !tz.current.isDST) {
+    return informal.display(tz.name).standard.abbrev;
+  }
+
+  return informal.display(tz.name).daylight.abbrev;
 }
 
 // Types

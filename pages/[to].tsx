@@ -11,21 +11,24 @@ export default function To() {
     return <p>Error: No timezone to convert to</p>;
   }
 
-  const toCode = informal.find(to);
-
   const now = spacetime.now();
-  const adjusted = now.goto(toCode);
+  const adjusted = now.goto(informal.find(to));
 
+  const nowName = util.formatTimezoneName(now.timezone().name);
+  const nowCode = util.formatTimezoneCode(now.timezone());
   const nowTime = util.formatTimeString(now);
+
+  const adjustedName = util.formatTimezoneName(adjusted.timezone().name);
+  const adjustedCode = util.formatTimezoneCode(adjusted.timezone());
   const adjustedTime = util.formatTimeString(adjusted);
 
   return (
     <>
       <p>
-        {now.timezone().name}: {nowTime}
+        {nowName} [{nowCode}]: {nowTime}
       </p>
       <p>
-        {adjusted.timezone().name}: {adjustedTime}
+        {adjustedName} [{adjustedCode}]: {adjustedTime}
       </p>
     </>
   );
