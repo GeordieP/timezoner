@@ -3,7 +3,7 @@ import informal from "spacetime-informal";
 
 export function formatTimeString(st: Spacetime, clock: ClockHours = 12) {
   const hour = formatHour(st.hour(), clock);
-  const minute = st.minute() === 0 ? "00" : st.minute();
+  const minute = st.minute() > 10 ? st.minute() : `0${st.minute()}`;
   const ampm = clock === 12 ? st.ampm() : "";
   return `${hour}:${minute} ${ampm}`;
 }
