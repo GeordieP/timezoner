@@ -2,16 +2,8 @@ import { Spacetime, TimezoneMeta } from "spacetime";
 import informal from "spacetime-informal";
 
 export function formatTimeString(st: Spacetime, clock: ClockHours = 12) {
-  const hour = formatHour(st.hour(), clock);
-  const minute = st.minute() > 10 ? st.minute() : `0${st.minute()}`;
-  const ampm = clock === 12 ? st.ampm() : "";
-  return `${hour}:${minute} ${ampm}`;
-}
-
-function formatHour(hour: number, clock: ClockHours) {
-  if (clock === 24) return hour;
-  if (hour > 12) return hour - 12;
-  return hour;
+  const format = clock === 24 ? "{time-24}" : "{time}";
+  return st.format(format);
 }
 
 export const formatTimezoneName = (name: string) => name.replace(/_/g, " ");
