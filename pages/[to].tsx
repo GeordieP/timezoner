@@ -24,12 +24,12 @@ export default function To() {
 
   return (
     <>
-      <p>
+      <div>
         {nowName} [{nowCode}]: {nowTime}
-      </p>
-      <p>
+      </div>
+      <div>
         {adjustedName} [{adjustedCode}]: {adjustedTime}
-      </p>
+      </div>
     </>
   );
 }
