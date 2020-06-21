@@ -35,7 +35,8 @@ describe("formatTimeString", () => {
 
 describe("formatTimezoneName", () => {
   test("should replace underscores", () => {
-    const input = "America/Los_Angeles";
+    const date = spacetime("Jun 20 2020", "America/Los_Angeles");
+    const input = date.timezone();
     const expected = "America/Los Angeles";
 
     const result = util.formatTimezoneName(input);

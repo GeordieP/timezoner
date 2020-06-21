@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./time.module.css";
 
 const Time: React.FC<TimeProps> = (props) => {
-  const [timeMain, ampm] = props.timeMain.split(" ");
   const timeAlign = props.timeAlign || "top";
 
   const wrapAlignment =
@@ -31,8 +30,7 @@ const Time: React.FC<TimeProps> = (props) => {
           <div
             className={`u-flexRow u-spaceBetween u-endCross ${styles.Timedisplay}`}
           >
-            <h1>{timeMain}</h1>
-            <h1>{ampm}</h1>
+            <h1>{props.timeMain.toUpperCase()}</h1>
           </div>
           <h1 className={styles.TimezoneCode}>{props.timezoneCode}</h1>
         </div>
