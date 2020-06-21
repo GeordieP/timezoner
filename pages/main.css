@@ -98,3 +98,7 @@ hr {
 .u-spaceBetween {
   justify-content: space-between;
 }
+
+.u-marginBot2 {
+  margin-bottom: 2rem;
+}
