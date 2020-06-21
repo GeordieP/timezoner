@@ -9,6 +9,10 @@
   src: url("../public/Space_Mono/SpaceMono-Regular.ttf");
 }
 
+html {
+  font-size: 16pt;
+}
+
 html,
 body {
   padding: 0;
@@ -18,7 +22,18 @@ body {
   background: #222426;
   color: #dddee0;
   font-family: "Space Mono", monospace;
-  font-size: 16pt;
+}
+
+@media (min-width: 800px) {
+  html {
+    font-size: 20pt;
+  }
+}
+
+@media (max-width: 400px) {
+  html {
+    font-size: 13pt;
+  }
 }
 
 hr {
@@ -28,7 +43,7 @@ hr {
 }
 
 .root {
-  padding: 90px;
+  padding: 3rem;
 }
 
 .u-fullWidth {

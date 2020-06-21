@@ -1,5 +1,5 @@
 .Time {
-  width: 280px;
+  width: 18rem;
 }
 
 .Time h1,
@@ -18,4 +18,8 @@
 
 .Time h6 {
   color: #777777;
+}
+
+.TimezoneCode.TimezoneCode {
+  margin-left: 20px;
 }

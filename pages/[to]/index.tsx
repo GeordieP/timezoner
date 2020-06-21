@@ -5,7 +5,6 @@ import * as util from "../../util";
 import styles from "./to.module.css";
 import Time, { TimeProps } from "../../components/Time";
 
-type TimeZoneProps = { spacetime: Spacetime } & Partial<TimeProps>;
 const TimeZone: React.FC<TimeZoneProps> = ({ spacetime: time, ...props }) => {
   const tz = time.timezone();
 
@@ -36,7 +35,11 @@ export default function To() {
       <TimeZone spacetime={now} timeAlign="bottom" />
       <hr className="u-fullWidth" />
 
-      <TimeZone spacetime={adjusted} />
+      <TimeZone spacetime={adjusted} className={styles.SpacedTimeDisplay} />
     </div>
   );
 }
+
+// Types
+
+type TimeZoneProps = { spacetime: Spacetime } & Partial<TimeProps>;
