@@ -3,11 +3,11 @@ import informal from "spacetime-informal";
 
 export function formatTimeString(st: Spacetime, clock: ClockHours = 12) {
   const format = clock === 24 ? "{time-24}" : "{time}";
-  return st.format(format).toString().toUpperCase();
+  return st.format(format).toString();
 }
 
 export const formatTimezoneName = (tz: TimezoneMeta) =>
-  tz.name.replace(/_/g, " ").toUpperCase();
+  tz.name.replace(/_/g, " ");
 
 export function formatTimezoneCode(tz: TimezoneMeta) {
   if (!tz.hasDst || !tz.current.isDST) {
