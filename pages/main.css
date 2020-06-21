@@ -1,0 +1,85 @@
+* {
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "Space Mono";
+  src: url("../public/Space_Mono/SpaceMono-BoldItalic.ttf");
+  src: url("../public/Space_Mono/SpaceMono-Italic.ttf");
+  src: url("../public/Space_Mono/SpaceMono-Bold.ttf");
+  src: url("../public/Space_Mono/SpaceMono-Regular.ttf");
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: #222426;
+  color: #dddee0;
+  font-family: "Space Mono", monospace;
+  font-size: 16pt;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #3e4145;
+}
+
+.root {
+  padding: 90px;
+}
+
+.u-fullWidth {
+  width: 100%;
+}
+
+.u-fullHeight {
+  height: 100%;
+}
+
+.u-flexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.u-flexRowReverse {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.u-flexCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.u-flexColReverse {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.u-startMain {
+  justify-content: flex-start;
+}
+.u-startCross {
+  align-items: flex-start;
+}
+
+.u-centerMain {
+  justify-content: center;
+}
+.u-centerCross {
+  align-items: center;
+}
+
+.u-endMain {
+  justify-content: flex-end;
+}
+.u-endCross {
+  align-items: flex-end;
+}
+
+.u-spaceBetween {
+  justify-content: space-between;
+}

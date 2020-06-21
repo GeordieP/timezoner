@@ -1,0 +1,21 @@
+.Time {
+  width: 280px;
+}
+
+.Time h1,
+.Time h2,
+.Time h3,
+.Time h4,
+.Time h5,
+.Time h6 {
+  padding: 0;
+  margin: 0;
+}
+
+.Time h1 {
+  line-height: 1;
+}
+
+.Time h6 {
+  color: #777777;
+}
