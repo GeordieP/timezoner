@@ -24,6 +24,7 @@ jobs:
       - run: npm test
 
   deploy:
+    needs: [test]
     runs-on: ubuntu-latest
 
     steps:
@@ -37,6 +38,7 @@ jobs:
       - name: Vercel Deploy
         uses: amondnet/vercel-action@v19.0.1+1
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           vercel-args: "--prod"
