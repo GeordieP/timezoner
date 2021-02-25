@@ -9,8 +9,12 @@ export default function To() {
   const { query } = useRouter();
   const { t } = query;
 
+  if (t == null) return <Err msg="Missing timestamp" />;
+
   const userTimezone = spacetime.now().timezone();
   const userTime = spacetime(parseInt(t as string), userTimezone.name);
+
+  if (!userTime.isValid()) return <Err msg="Invalid timestamp" />;
 
   const est = userTime.goto(informal.find("EST"));
   const cst = userTime.goto(informal.find("CST"));
@@ -30,7 +34,7 @@ export default function To() {
       <WrappedTime tz={pst} />
       <hr className="u-fullWidth" />
       <WrappedTime tz={cet} />
-
+      <hr className="u-fullWidth" />
       <Link href="/movienight/create">
         <a>New Movie Night</a>
       </Link>
@@ -49,5 +53,19 @@ const WrappedTime = ({ tz }) => {
       timeAlt={util.formatTimeString(tz, 24).toString()}
       timeAlign="bottom"
     />
+  );
+};
+
+const Err = ({ msg }: { msg: string }) => {
+  return (
+    <div className="u-flexCol u-fullWidth u-fullHeight u-centerCross u-centerMain">
+      <h2>{msg}</h2>
+
+      <Link href="/movienight/create">
+        <a>
+          <p>Create a valid link</p>
+        </a>
+      </Link>
+    </div>
   );
 };
