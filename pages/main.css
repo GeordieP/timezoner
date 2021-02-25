@@ -24,6 +24,10 @@ body {
   font-family: "Space Mono", monospace;
 }
 
+a {
+  color: dodgerblue;
+}
+
 @media (min-width: 800px) {
   html {
     font-size: 20pt;
