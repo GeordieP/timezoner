@@ -1,71 +1,9 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import spacetime from "spacetime";
-import informal from "spacetime-informal";
-import * as util from "../../util";
-import Time from "../../components/Time";
+import CreateForm from "../../components/movienight/Create";
 
-export default function To() {
-  const { query } = useRouter();
-  const { t } = query;
-
-  if (t == null) return <Err msg="Missing timestamp" />;
-
-  const userTimezone = spacetime.now().timezone();
-  const userTime = spacetime(parseInt(t as string), userTimezone.name);
-
-  if (!userTime.isValid()) return <Err msg="Invalid timestamp" />;
-
-  const est = userTime.goto(informal.find("EST"));
-  const cst = userTime.goto(informal.find("CST"));
-  const pst = userTime.goto(informal.find("PST"));
-  const cet = userTime.goto(informal.find("CET"));
+export default function MovieNight() {
   return (
     <div className="u-flexCol u-fullWidth u-fullHeight u-centerCross u-centerMain">
-      <h4>Movie Night is at</h4>
-      <WrappedTime tz={userTime} />
-      <hr className="u-fullWidth" />
-
-      <h4>Which is</h4>
-      <WrappedTime tz={est} />
-      <hr className="u-fullWidth" />
-      <WrappedTime tz={cst} />
-      <hr className="u-fullWidth" />
-      <WrappedTime tz={pst} />
-      <hr className="u-fullWidth" />
-      <WrappedTime tz={cet} />
-      <hr className="u-fullWidth" />
-      <Link href="/movienight/create">
-        <a>New Movie Night</a>
-      </Link>
+      <CreateForm />
     </div>
   );
 }
-
-const WrappedTime = ({ tz }) => {
-  const toTz = tz.timezone();
-  return (
-    <Time
-      timezoneOffset={toTz.current.offset}
-      timezoneCode={util.formatTimezoneCode(toTz)}
-      timezoneName={util.formatTimezoneName(toTz)}
-      timeMain={util.formatTimeString(tz).toString()}
-      timeAlt={util.formatTimeString(tz, 24).toString()}
-      timeAlign="bottom"
-    />
-  );
-};
-
-const Err = ({ msg }: { msg: string }) => {
-  return (
-    <div className="u-flexCol u-fullWidth u-fullHeight u-centerCross u-centerMain">
-      <h2>{msg}</h2>
-
-      <Link href="/movienight/create">
-        <a>
-          <p>Create a valid link</p>
-        </a>
-      </Link>
-    </div>
-  );
-};
