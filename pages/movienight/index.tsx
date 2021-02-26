@@ -5,6 +5,8 @@ import informal from "spacetime-informal";
 import * as util from "../../util";
 import Time from "../../components/Time";
 
+const CONVERSIONS = ["EST", "CST", "PST", "CET"].map<string>(informal.find);
+
 export default function To() {
   const { query } = useRouter();
   const { t } = query;
@@ -16,27 +18,39 @@ export default function To() {
 
   if (!userTime.isValid()) return <Err msg="Invalid timestamp" />;
 
-  const est = userTime.goto(informal.find("EST"));
-  const cst = userTime.goto(informal.find("CST"));
-  const pst = userTime.goto(informal.find("PST"));
-  const cet = userTime.goto(informal.find("CET"));
+  const filterTz = (x: string) => x !== userTimezone.name;
+  const convertedTimes = CONVERSIONS.filter(filterTz).map((x) => {
+    return userTime.goto(x);
+  });
+
   return (
     <div className="u-flexCol u-fullWidth u-fullHeight u-centerCross u-centerMain">
-      <h4>Movie Night is at</h4>
-      <WrappedTime tz={userTime} />
-      <hr className="u-fullWidth" />
+      <h6 style={{ marginBottom: 0 }}>Movie Night is</h6>
+      <h3 style={{ color: "white", marginTop: 0 }}>
+        {userTime.format("{day}, {month} {date-ordinal}")}
+      </h3>
 
-      <h4>Which is</h4>
-      <WrappedTime tz={est} />
-      <hr className="u-fullWidth" />
-      <WrappedTime tz={cst} />
-      <hr className="u-fullWidth" />
-      <WrappedTime tz={pst} />
-      <hr className="u-fullWidth" />
-      <WrappedTime tz={cet} />
-      <hr className="u-fullWidth" />
+      <WrappedTime tz={userTime} />
+
+      {convertedTimes.map((t) => (
+        <>
+          <hr style={{ width: "18rem" }} />
+          <WrappedTime tz={t} />
+        </>
+      ))}
+
       <Link href="/movienight/create">
-        <a>New Movie Night</a>
+        <a>
+          <p
+            style={{
+              marginTop: "50px",
+              fontSize: "8pt",
+              fontWeight: "normal",
+            }}
+          >
+            New Movie Night
+          </p>
+        </a>
       </Link>
     </div>
   );

@@ -17,7 +17,6 @@ export default function To() {
       <label htmlFor="date">Enter Date &amp; Time</label>
       <input type="text" id="date" {...date} placeholder="Feb 27 2021 8:00pm" />
       <p>Share link</p>
-      <input readOnly type="text" size={100} value={makeUrl(st?.epoch)} />
       <a href={makeUrl(st?.epoch)}>{makeUrl(st?.epoch)}</a>
     </div>
   );
@@ -35,5 +34,6 @@ const useInput = (defaultValue = "") => {
 
 const makeUrl = (epoch?: number) => {
   if (epoch == null) return "";
-  return `https://timezoner.now.sh/movienight?t=${epoch}`;
+
+  return `${window.location.origin}/movienight?t=${epoch}`;
 };
