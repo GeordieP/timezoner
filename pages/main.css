@@ -106,3 +106,34 @@ hr {
 .u-marginBot2 {
   margin-bottom: 2rem;
 }
+
+.u-gapSm { gap: 5px }
+.u-gapMd { gap: 15px }
+.u-gapLg { gap: 30px }
+.u-gapXl { gap: 50px }
+
+.font-12 { font-size: 12px; }
+.font-14 { font-size: 14px; }
+.font-16 { font-size: 16px; }
+.font-20 { font-size: 20px; }
+
+
+.debug {
+  border: 1px solid #f0f;
+}
+
+.grow { flex-grow: 1; }
+
+input, textarea {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  padding: 9px;
+}
+
+.u-noMargin { margin: 0; }
+.u-noPadding { padding: 0; }
+.text-dim { opacity: 0.7; }
+.text-green { color: rgb(146, 206, 172) }
+.text-red { color: rgb(243, 174, 175) }
